@@ -3,7 +3,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-
+import os
 # PAGE CONFIGURATION
 st.set_page_config(
     page_title="France Top 50 Playlist Analysis",
@@ -14,7 +14,8 @@ st.set_page_config(
 # LOAD DATA
 @st.cache_data
 def load_data():
-    data = pd.read_csv("france_top50_cleaned.csv")
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    data = pd.read_csv(os.path.join(BASE_DIR, "france_top50_cleaned.csv"))
 
     data["date"] = pd.to_datetime(data["date"])
 
